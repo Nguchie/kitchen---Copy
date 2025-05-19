@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between products */
+    justify-content: center; /* Center-align the products */
+}
+
+.product {
+    width: 200px; /* Set a fixed width for each product */
+    text-align: center; /* Center-align the content */
+    margin: 10px;
+}
+
+.product img {
+    width: 100%; /* Ensure the image fits within the product container */
+    max-height: 150px; /* Limit the height of the image */
+    object-fit: cover; /* Ensure the image doesn't stretch or distort */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+.product p {
+    font-size: 1em; /* Adjust font size for the product name */
+    margin-top: 10px;
+    color: #333;
+}
+</style>
+<div class="products">
+    {% if query %}
+
+        {% if products %}
+            {% for product in products %}
+                <div class="product">
+                    <a href="{% url 'product_detail' product.slug %}">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% endif %}
+                        <p>{{ product.name }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No products found matching your search.</p>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

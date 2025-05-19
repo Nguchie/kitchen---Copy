@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Energies - Mansa Engineering</title>
+    <!-- Bootstrap CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary: #1E88E5; /* Bright blue */
+            --secondary: #1565C0; /* Darker blue */
+            --accent: #64B5F6; /* Light blue for accents */
+            --white: #FFFFFF;
+            --light-gray: #F4F4F4;
+            --dark-gray: #333;
+            --soft-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--dark-gray);
+            font-size: 1.2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px var(--soft-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card h3 {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--dark-gray);
+            margin: 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            padding: 1.5rem;
+            border-radius: 10px;
+            color: var(--white);
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px var(--soft-shadow);
+        }
+
+        .highlight-box h5 {
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p {
+            margin: 0;
+        }
+
+        .list-group-item {
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            background-color: var(--light-gray);
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .text-primary {
+            color: var(--primary) !important;
+        }
+
+        .text-success {
+            color: var(--secondary) !important;
+        }
+
+        .text-teal {
+            color: var(--primary) !important;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+   <div class="wrapper">
+    <div class="header">
+        <h1>Quantum Energies</h1>
+        <p>Powering a Greener Tomorrow</p>
+    </div>
+
+    <section class="text-center mb-4">
+        <p class="lead">We provide sustainable, cost-effective energy solutions for residential, commercial, and industrial clients, ensuring quality and efficiency. We specialize in providing cutting-edge renewable energy solutions tailored to meet the diverse needs of residential, commercial, and industrial clients. Our commitment to sustainability, efficiency, and innovation ensures that you receive the highest quality energy solutions for long-term savings and environmental benefits.</p>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h3>15+</h3>
+                    <p>Years of Innovation</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h3>5,000+</h3>
+                    <p>Successful Installations</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h3>98%</h3>
+                    <p>Customer Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-4">
+        <h2 class="text-success">Our Expertise</h2>
+        <p>We specialize in renewable energy solutions:</p>
+        <h3>Solar Power Systems</h3>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">High-efficiency solar panels – Capture and convert more sunlight into usable energy with premium-quality photovoltaic panels.</li>
+            <li class="list-group-item">Smart inverters for reliable power – Optimize energy usage and seamlessly integrate with the grid for uninterrupted power supply.</li>
+            <li class="list-group-item">Advanced battery storage – Store excess energy and ensure power availability even during cloudy days or at night.</li>
+            <li class="list-group-item">Real-time monitoring systems – Keep track of your energy production and consumption with smart analytics for better efficiency management.</li>
+        </ul>
+        <div class="highlight-box">
+            <h5><i class="bi bi-lightbulb-fill"></i> Why Solar?</h5>
+            <p>Solar energy reduces costs and lowers carbon footprint with long-term savings.</p>
+        </div>
+    </section>
+
+    <section class="mb-4">
+        <h3 class="text-success">Solar Water Heating</h3>
+        <p>Eco-friendly hot water solutions for homes and businesses.</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Up to 80% energy savings – Significantly lower your electricity or gas bills by utilizing the sun’s free and abundant energy to heat water efficiently.</li>
+            <li class="list-group-item">Scalable commercial solutions – Tailored systems for businesses, hotels, hospitals, and other large-scale operations to meet high-demand water heating needs.</li>
+            <li class="list-group-item">Efficient pool heating – Enjoy warm pools year-round with our energy-efficient solar heating systems, reducing operational costs while maintaining comfort.</li>
+        </ul>
+    </section>
+
+    <section class="mb-4">
+        <h3 class="text-success">Professional Services</h3>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Expert consultations – Whether you need advice on system architecture, security strategies, or best practices, our experts are here to guide you every step of the way.</li>
+            <li class="list-group-item">Certified installations – Our trained professionals handle everything from initial setup to system integration, guaranteeing a secure and efficient deployment tailored to your specific needs.</li>
+            <li class="list-group-item">Comprehensive maintenance – We offer regular inspections, troubleshooting, software updates, and performance optimization to prevent downtime and ensure long-term reliability.</li>
+        </ul>
+        <div class="highlight-box">
+            <h5><i class="bi bi-cash-coin"></i> Financing Options</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Flexible solar loans</li>
+                <li class="list-group-item">Zero upfront Power Purchase Agreements</li>
+                <li class="list-group-item">Affordable leasing plans</li>
+            </ul>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+{% endblock %}

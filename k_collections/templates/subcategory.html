@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Page Layout */
+    .page-container {
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 20px;
+        padding: 15px;
+        align-items: flex-start;
+    }
+
+    /* Product List Styling */
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .product-item {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%; /* Ensure all items have the same height */
+    }
+
+    .product-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .product-item h3 {
+        padding: 10px 15px;
+        margin: 0;
+        background-color: #f8f9fa;
+        font-size: 1.2rem;
+        color: #2c3e50;
+        flex-shrink: 0; /* Prevent title from shrinking */
+    }
+
+    .product-item p {
+        padding: 10px 15px;
+        margin: 0;
+        color: #6c757d;
+        flex-grow: 1; /* Allow description to grow and fill space */
+    }
+
+    .product-item .button-container {
+        margin-top: auto; /* Push the button container to the bottom */
+        flex-shrink: 0; /* Prevent the container from shrinking */
+        padding: 10px 15px;
+        background-color: #f8f9fa; /* Optional: Add background to button container */
+    }
+
+    .product-item a {
+        display: block;
+        text-align: center;
+        padding: 10px 15px;
+        background: linear-gradient(135deg, #1E88E5, #42A5F5); /* Blue gradient */
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .product-item a:hover {
+        background: linear-gradient(135deg, #1565C0, #1E88E5); /* Darker blue gradient */
+        transform: scale(1.05);
+    }
+
+    /* No Products Message */
+    .product-list + p {
+        text-align: center;
+        color: #6c757d;
+        margin-top: 50px;
+        font-size: 1.2rem;
+    }
+
+    /* Filter Section Styles */
+    .filter-section {
+        width: 250px;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start; /* Ensures filter is at the top */
+        position: sticky;
+        top: 0;
+    }
+
+    .filter-section form {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .filter-section h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .filter-section > form > div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .filter-section input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    .filter-section button {
+        width: 100%;
+        padding: 10px;
+        background: linear-gradient(135deg, #1E88E5, #42A5F5); /* Blue gradient */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: auto;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .filter-section button:hover {
+        background: linear-gradient(135deg, #1565C0, #1E88E5); /* Darker blue gradient */
+        transform: scale(1.05);
+    }
+
+    /* Responsive Adjustments */
+    @media screen and (max-width: 768px) {
+        .page-container {
+            flex-direction: column;
+        }
+
+        .filter-section {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .products {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+
+        .product img {
+            height: 200px;
+        }
+
+
+</style>
+
+<div class="page-container">
+    <!-- Filter Section -->
+    <!-- <div class="filter-section">
+        <form method="get">
+            <h3>Filter by Type:</h3>
+            {% for type in available_types %}
+                <div>
+                    <input type="checkbox" name="type" value="{{ type }}" {% if type in type_filter %}checked{% endif %}>
+                    <label for="{{ type }}">{{ type }}</label>
+                </div>
+            {% empty %}
+                <p>No product types available for filtering.</p>
+            {% endfor %}
+            <button type="submit">Apply Filter</button>
+        </form>
+    </div> -->
+
+    <!-- Products Section -->
+    {% if products %}
+        <div class="product-list">
+            {% for product in products %}
+                <div class="product-item">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <h3>{{ product.name }}</h3>
+                    <div class="button-container">
+                        <a href="{% url 'product_detail' product.slug %}">View Details</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No products found for this category.</p>
+    {% endif %}
+</div>
+{% endblock %}

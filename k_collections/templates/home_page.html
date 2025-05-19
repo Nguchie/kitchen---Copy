@@ -1,0 +1,596 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heat Pumps Kenya</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+ :root {
+    --primary: #1E88E5; /* Bright blue */
+    --secondary: #1565C0; /* Darker blue */
+    --accent: #64B5F6; /* Light blue for accents */
+    --white: #FFFFFF;
+    --light-gray: #F4F4F4;
+    --dark-gray: #333;
+    --soft-shadow: rgba(0, 0, 0, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-gray);
+    background-color: var(--light-gray);
+}
+
+/* Enhanced Navbar */
+.navbar {
+    background: linear-gradient(
+        135deg,
+        #1E88E5, /* Bright blue */
+        #42A5F5, /* Lighter blue */
+        #64B5F6, /* Light blue */
+        #90CAF9  /* Very light blue */
+    );
+    background-size: 200% 200%; /* For animation */
+    color: var(--white);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: GradientShift 8s ease infinite; /* Gradient animation */
+}
+
+@keyframes GradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--white);
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.dropdown-content a {
+    color: var(--dark-gray);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--light-gray);
+    color: var(--primary);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 5px var(--soft-shadow);
+    width: 250px;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 8px 10px;
+    border-radius: 20px;
+    font-size: 1rem;
+}
+
+.search-button {
+    background: var(--primary);
+    border: none;
+    color: var(--white);
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.search-button:hover {
+    background: var(--secondary);
+}
+
+/* Subcategory Products Section */
+.subcategory-section {
+    background-color: var(--white);
+    padding: 3rem 1rem;
+}
+
+.subcategory-products {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.subcategory {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.subcategory-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.subcategory-title::before,
+.subcategory-title::after {
+    content: '';
+    height: 1px;
+    background-color: var(--primary);
+    flex: 1;
+}
+
+.subcategory-title::before {
+    margin-right: 1rem;
+}
+
+.subcategory-title::after {
+    margin-left: 1rem;
+}
+
+.subcategory-title h2 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 1.5rem;
+    white-space: nowrap;
+}
+
+.subcategory-title a {
+    position: absolute;
+    right: 0;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: var(--light-gray);
+    transition: all 0.3s ease;
+}
+
+.subcategory-title a:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.product-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--soft-shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.12);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-card-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-card-content h3 {
+    margin-bottom: 0.5rem;
+    color: #000000; /* Changed from var(--primary) to black */
+}
+
+.product-button {
+    align-self: flex-end;
+    margin-top: auto;
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.product-button:hover {
+    background-color: var(--secondary);
+}
+
+.view-more-button {
+    display: inline-block;
+    background-color: var(--accent);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    position: relative;
+    float: right;
+    margin: 1rem 1;
+}
+
+.view-more-button:hover {
+    background-color: var(--primary);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--dark-gray);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .subcategory-title::before,
+    .subcategory-title::after {
+        width: 15%;
+    }
+}
+
+/* Enhanced Hero Section */
+.hero {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.hero-carousel {
+    height: 100%;
+    position: relative;
+}
+
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item.active {
+    opacity: 1;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--white);
+    z-index: 2;
+    width: 80%;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--accent);
+    color: var(--primary);
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--primary);
+}
+
+.cta-button::after {
+    content: " ➝";
+    font-size: 18px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: scale(1.05);
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button:hover::after {
+    margin-left: 6px;
+}
+
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--primary);
+        width: 100%;
+        text-align: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: var(--white);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{% url 'home_page' %}" class="navbar-brand">
+            <i class="bi bi-lightning-charge-fill"></i>
+            Heat Pumps Kenya
+        </a>
+        <div class="nav-links">
+            <a href="{% url 'home_page' %}"><i class="bi bi-house"></i> Home</a>
+            <div class="dropdown">
+                <a href="#"><i class="bi bi-grid"></i> Categories</a>
+                <div class="dropdown-content">
+                    {% for main_category in main_categories %}
+                        <a href="{% url 'main_category' main_category.slug %}">{{ main_category.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <a href="{% url 'about' %}"><i class="bi bi-info-circle"></i> About</a>
+                 <a href="https://wa.me/254796184063?text=I%20want%20to%20inquire%20about%20your%20energy%20solutions" target="_blank" >
+    <i class="bi bi-telephone"></i> Contact us
+</a>
+        </div>
+
+ <form method="get" action="{% url 'search_results' %}">
+ <div class="search-container">
+
+    <input type="text" name="q" value="{{ query }}" class="search-input"placeholder="Search products...">
+    <button class="search-button"><i class="bi bi-search"></i></button>
+</div>
+ </form>
+
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-carousel">
+            <div class="carousel-item active">
+                <img src="{% static 'images/Home-Pge-1.jpg' %}" alt="Solar Panels" loading="lazy">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/Home-Pge-3.jpg' %}" alt="Wind Turbines" loading="lazy">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/slider-7.jpg' %}" alt="Energy Storage" loading="lazy">
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1>Power Your Future</h1>
+            <p>Discover innovative energy solutions for a sustainable tomorrow</p>
+            <a href="{% url 'main_category' main_categories.3.slug %}" class="cta-button">Explore Products</a>
+        </div>
+    </section>
+
+    <!-- Subcategory Products Section -->
+    <section id="products" class="subcategory-section">
+        {% for subcategory in sub_categories %}
+        <div class="subcategory-products">
+            <h2 class="subcategory-title">{{ subcategory.name }}</h2>
+            <div class="product-grid">
+                {% for product in subcategory.products.all|slice:":5" %}
+                <div class="product-card">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <div class="product-card-content">
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.short_description }}</p>
+                        <a href="{% url 'product_detail' slug=product.slug %}" class="product-button">View Details</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <a href="{% url 'subcategory' subcategory_slug=subcategory.slug %}" class="view-more-button">View More</a>
+        </div>
+        {% endfor %}
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+
+        <a href="https://wa.me/254796184063?text=I%20want%20to%20inquire%20about%20your%20energy%20solutions" target="_blank" class="inquiry-btn">
+    Contact us
+</a>
+
+        </div>
+        <p>&copy; 2025 Heat Pumps Kenya. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+<script>
+    // Carousel Functionality
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    let currentSlide = 0;
+
+    function nextSlide() {
+        carouselItems[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % carouselItems.length;
+        carouselItems[currentSlide].classList.add('active');
+    }
+
+    // Automatically change slides every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // Toggle Menu Functionality
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('active');
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const navToggle = document.querySelector(".nav-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        navToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+        });
+    });
+
+</script>

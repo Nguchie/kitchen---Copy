@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .product-detail {
+        max-width: 900px;
+        margin: 0px auto; /* Add margin for centering */
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two columns */
+        background-color: #ffffff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow for more depth */
+        border-radius: 15px; /* Rounded corners */
+        overflow: hidden;
+        padding: 5px; /* Extra padding for spacing */
+        transition: all 0.3s ease; /* Smooth transition for hover effect */
+    }
+
+    .product-detail:hover {
+        transform: translateY(-10px); /* Subtle lift effect when hovered */
+    }
+
+    .product-detail img {
+        width: 90%;
+        height: 90%;
+        object-fit: cover;
+        border-radius: 15px; /* Rounded corners on the image */
+    }
+
+    .product-detail > div {
+        padding: 10px;
+    }
+
+    .product-detail h1 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 1.5rem; /* Larger font size */
+        font-weight: bold;
+        text-align: left;
+        letter-spacing: 0.5px;
+    }
+
+    .product-detail p {
+        color: #6c757d;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .inquiry-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        padding: 12px 0px;
+        background-color: #1daa61;
+        color: white;
+        text-decoration: none;
+        border-radius: 25px; /* Round button corners */
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        gap: 10px;
+        margin-top: 100px;
+    }
+
+    .inquiry-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .inquiry-btn:hover {
+        background-color: #147643;
+        transform: scale(1.05); /* Button grows slightly on hover */
+    }
+
+    @media screen and (max-width: 768px) {
+        .product-detail {
+            width: 90%;
+            margin: 20px auto;
+            grid-template-columns: 1fr; /* Stacks content in one column for smaller screens */
+            padding: 20px;
+        }
+
+        .product-detail img {
+            height: 250px; /* Adjust image height for smaller screens */
+        }
+    }
+</style>
+
+
+<div class="product-detail">
+    <div>
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description }}</p>
+        <p>{{ product.technical_description }}</p>
+     <a href="https://wa.me/254796184063?text=I%20want%20to%20inquire%20about%20{{ product.name }}" target="_blank" class="inquiry-btn">
+    Buy On WhatsApp
+</a>
+
+    </div>
+    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+</div>
+{% endblock %}
